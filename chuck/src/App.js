@@ -1,26 +1,26 @@
 import React from 'react'
 import { connect } from 'react-redux'
 
+import { getJoke } from './actions'
 import './App.css'
 
 function App(props) {
 
   console.log("app props", props)
 
-  return (
+  if (!props.joke.length) return (
     <div className="App">
       <header className="App-header">
-        <p>
-          Edit <code>src/App.js</code> and save to reload.
-        </p>
-        <a
-          className="App-link"
-          href="https://reactjs.org"
-          target="_blank"
-          rel="noopener noreferrer"
-        >
-          Learn React
-        </a>
+        <button onClick={props.getJoke}>Get New Joke</button>
+      </header>
+    </div>
+  )
+
+  else return (
+    <div className="App">
+      <header className="App-header">
+        <h1>{props.joke}</h1>
+        <button onClick={props.getJoke}>Get New Joke</button>
       </header>
     </div>
   )
@@ -28,8 +28,8 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    ...state
+    joke: state.joke
   }
 }
 
-export default connect(mapStateToProps)(App)
+export default connect(mapStateToProps, { getJoke })(App)
