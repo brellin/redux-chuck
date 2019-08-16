@@ -8,7 +8,7 @@ function App(props) {
 
   console.log("app props", props)
 
-  if (!props.joke.length) return (
+  if (!props.gotten) return (
     <div className="App">
       <header className="App-header">
         <button onClick={props.getJoke}>Get New Joke</button>
@@ -28,7 +28,8 @@ function App(props) {
 
 const mapStateToProps = state => {
   return {
-    joke: state.joke
+    joke: state.joke,
+    gotten: state.gotten
   }
 }
 
